@@ -20,7 +20,7 @@ with col1:
 with col2:
     travel_type = st.selectbox("Type of Travel", ["Business travel", "Personal Travel"])
     travel_class = st.selectbox("Class", ["Eco", "Eco Plus", "Business"])
-    distance = st.number_input("Flight Distance", value=1000)
+    distance = st.number_input("Flight Distance (km)", value=1000)
 
 with col3:
     dep_delay = st.number_input("Departure Delay (min)", value=0)
@@ -39,7 +39,7 @@ rating_cols = [
 ratings = {}
 for i, col in enumerate(rating_cols):
     target_col = r_col1 if i < 7 else r_col2
-    ratings[col] = target_col.segmented_control(col, options=[0, 1, 2, 3, 4, 5], default=3)
+    ratings[col] = target_col.selectbox(col, options=[0, 1, 2, 3, 4, 5], index=3)
 
 if st.button("Predict Satisfaction"):
     # Preprocess inputs to match training format
@@ -54,7 +54,7 @@ if st.button("Predict Satisfaction"):
     }
     # Add ratings
     input_data.update(ratings)
-    
+
     # Convert to DataFrame in specific order
     feature_order = [
         'Gender', 'Customer Type', 'Age', 'Type of Travel', 'Class', 'Flight Distance',
@@ -64,9 +64,9 @@ if st.button("Predict Satisfaction"):
         'Baggage handling', 'Checkin service', 'Inflight service', 'Cleanliness',
         'Total_Delay'
     ]
-    
+
     df_input = pd.DataFrame([input_data])[feature_order]
-    
+
     # Prediction
     prediction = model.predict(df_input)[0]
     prob = model.predict_proba(df_input)[0][prediction]
