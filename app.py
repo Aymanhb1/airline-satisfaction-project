@@ -20,7 +20,7 @@ with col1:
 with col2:
     travel_type = st.selectbox("Type of Travel", ["Business travel", "Personal Travel"])
     travel_class = st.selectbox("Class", ["Eco", "Eco Plus", "Business"])
-    distance = st.number_input("Flight Distance", value=1000)
+    distance = st.number_input("Flight Distance (km)", value=1000)
 
 with col3:
     dep_delay = st.number_input("Departure Delay (min)", value=0)
