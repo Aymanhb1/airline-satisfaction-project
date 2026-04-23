@@ -23,8 +23,8 @@ with col2:
     distance = st.number_input("Flight Distance (km)", value=1000)
 
 with col3:
-    dep_delay = st.number_input("Departure Delay (min)", value=0)
-    arr_delay = st.number_input("Arrival Delay (min)", value=0)
+    dep_delay = st.number_input("Departure Delay (hrs)", value=0)
+    arr_delay = st.number_input("Arrival Delay (hrs)", value=0)
 
 st.subheader("Service Ratings (0-5)")
 r_col1, r_col2 = st.columns(2)
